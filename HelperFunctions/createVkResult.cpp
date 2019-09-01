@@ -20,7 +20,7 @@
  *      Author: Douglas Kaip
  */
 
-#include "HelperFunctions.hh"
+#include "../headers/JVmaHelperFunctions.hh"
 #include "slf4j.hh"
 
 

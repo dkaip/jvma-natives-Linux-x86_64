@@ -5,8 +5,8 @@
  *      Author: Douglas Kaip
  */
 
+#include "../headers/JVmaHelperFunctions.hh"
 #include "com_CIMthetics_jvma_NativeProxies.h"
-#include "HelperFunctions.hh"
 #include "slf4j.hh"
 
 
@@ -21,7 +21,7 @@ JNIEXPORT void JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaDestroyAllocato
     struct VmaAllocator_T *vmaAllocator = (struct VmaAllocator_T *)jvma::getHandleValue(env, jVmaAllocator);
     if (env->ExceptionOccurred())
     {
-        LOGERROR(env, "%s", "Could not retrieve VkQueue handle");
+        LOGERROR(env, "%s", "Could not retrieve VmaAllocator handle");
         return;
     }
 

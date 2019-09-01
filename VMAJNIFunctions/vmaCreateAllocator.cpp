@@ -9,7 +9,7 @@
 using namespace std;
 
 #include "com_CIMthetics_jvma_NativeProxies.h"
-#include "HelperFunctions.hh"
+#include "../headers/JVmaHelperFunctions.hh"
 #include "slf4j.hh"
 
 /*
