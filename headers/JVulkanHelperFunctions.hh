@@ -2257,6 +2257,11 @@ namespace jvulkan
 			const VkFilterCubicImageViewImageFormatPropertiesEXT* vkFilterCubicImageViewImageFormatPropertiesEXT,
 			std::vector<void *> *memoryToFree);
 
+    void populateVkPhysicalDeviceMemoryProperties(
+            JNIEnv *env,
+            jobject jVkPhysicalDeviceMemoryPropertiesObject,
+            const VkPhysicalDeviceMemoryProperties *vkPhysicalDeviceMemoryProperties);
+
 	JNIEnv *getJNIEnv();
 
 	void putOnLinkedBlockingQueue(JNIEnv *env, jobject JQueue, jobject entry);
