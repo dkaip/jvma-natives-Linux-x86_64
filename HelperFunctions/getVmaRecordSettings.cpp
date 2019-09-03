@@ -5,7 +5,8 @@
  *      Author: Douglas Kaip
  */
 
-#include "../headers/JVmaHelperFunctions.hh"
+#include "JVmaHelperFunctions.hh"
+#include "JVulkanHelperFunctions.hh"
 #include "slf4j.hh"
 
 namespace jvma
@@ -38,7 +39,7 @@ namespace jvma
             return;
         }
 
-        VmaRecordFlags flags = getEnumSetValue(
+        VmaRecordFlags flags = jvulkan::getEnumSetValue(
                 env,
                 flagsObject,
                 "com/CIMthetics/jvma/Enums/VmaRecordFlagBits");

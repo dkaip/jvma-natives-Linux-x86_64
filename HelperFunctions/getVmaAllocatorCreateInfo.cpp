@@ -6,7 +6,8 @@
  */
 
 
-#include "../headers/JVmaHelperFunctions.hh"
+#include "JVmaHelperFunctions.hh"
+#include "JVulkanHelperFunctions.hh"
 #include "slf4j.hh"
 
 namespace jvma
@@ -39,7 +40,7 @@ namespace jvma
             return;
         }
 
-        VmaAllocatorCreateFlags flags = getEnumSetValue(
+        VmaAllocatorCreateFlags flags = jvulkan::getEnumSetValue(
                 env,
                 flagsObject,
                 "com/CIMthetics/jvma/Enums/VmaAllocatorCreateFlagBits");
@@ -65,7 +66,7 @@ namespace jvma
             return;
         }
 
-        VkPhysicalDevice_T *vulkanPhysicalDevice = (VkPhysicalDevice_T *)getHandleValue(env, jVkPhysicalDeviceHandle);
+        VkPhysicalDevice_T *vulkanPhysicalDevice = (VkPhysicalDevice_T *)jvulkan::getHandleValue(env, jVkPhysicalDeviceHandle);
         if (env->ExceptionOccurred())
         {
             LOGERROR(env, "%s", "Error calling getHandleValue");
@@ -87,7 +88,7 @@ namespace jvma
             return;
         }
 
-        VkDevice_T *vulkanLogicalDevice = (VkDevice_T *)getHandleValue(env, jVkDeviceHandle);
+        VkDevice_T *vulkanLogicalDevice = (VkDevice_T *)jvulkan::getHandleValue(env, jVkDeviceHandle);
         if (env->ExceptionOccurred())
         {
             LOGERROR(env, "%s", "Error calling getHandleValue");

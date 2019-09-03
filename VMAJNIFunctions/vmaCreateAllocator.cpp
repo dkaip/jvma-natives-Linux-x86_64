@@ -9,7 +9,8 @@
 using namespace std;
 
 #include "com_CIMthetics_jvma_NativeProxies.h"
-#include "../headers/JVmaHelperFunctions.hh"
+#include "JVmaHelperFunctions.hh"
+#include "JVulkanHelperFunctions.hh"
 #include "slf4j.hh"
 
 /*
@@ -31,7 +32,7 @@ JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaCreateAlloca
     if (env->ExceptionOccurred())
     {
         LOGERROR(env, "%s", "Failed on call to getVmaAllocatorCreateInfo");
-        return jvma::createVkResult(env, VK_RESULT_MAX_ENUM);
+        return jvulkan::createVkResult(env, VK_RESULT_MAX_ENUM);
     }
 
     VmaAllocator vmaAllocator = nullptr;
@@ -44,10 +45,10 @@ JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaCreateAlloca
         LOGERROR(env, "%s error code is %d", "Failed on call to vmaCreateAllocator", result);
     }
 
-    jvma::freeMemory(&memoryToFree);
+    jvulkan::freeMemory(&memoryToFree);
 
-    jvma::setHandleValue(env, jVmaAllocator, vmaAllocator);
+    jvulkan::setHandleValue(env, jVmaAllocator, vmaAllocator);
 
-    return jvma::createVkResult(env, result);
+    return jvulkan::createVkResult(env, result);
 }
 

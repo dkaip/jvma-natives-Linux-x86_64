@@ -5,7 +5,8 @@
  *      Author: Douglas Kaip
  */
 
-#include "../headers/JVmaHelperFunctions.hh"
+#include "JVmaHelperFunctions.hh"
+#include "JVulkanHelperFunctions.hh"
 #include "com_CIMthetics_jvma_NativeProxies.h"
 #include "slf4j.hh"
 
@@ -18,7 +19,7 @@
 JNIEXPORT void JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaDestroyAllocator
   (JNIEnv *env, jobject, jobject jVmaAllocator)
 {
-    struct VmaAllocator_T *vmaAllocator = (struct VmaAllocator_T *)jvma::getHandleValue(env, jVmaAllocator);
+    struct VmaAllocator_T *vmaAllocator = (struct VmaAllocator_T *)jvulkan::getHandleValue(env, jVmaAllocator);
     if (env->ExceptionOccurred())
     {
         LOGERROR(env, "%s", "Could not retrieve VmaAllocator handle");

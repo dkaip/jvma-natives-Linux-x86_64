@@ -18,7 +18,7 @@
 JNIEXPORT void JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaGetPhysicalDeviceProperties
   (JNIEnv *env, jobject, jobject jVmaAllocator, jobject jVkPhysicalDevicePropertiesObject)
 {
-    struct VmaAllocator_T *vmaAllocator = (struct VmaAllocator_T *)jvma::getHandleValue(env, jVmaAllocator);
+    struct VmaAllocator_T *vmaAllocator = (struct VmaAllocator_T *)jvulkan::getHandleValue(env, jVmaAllocator);
     if (env->ExceptionOccurred())
     {
         LOGERROR(env, "%s", "Could not retrieve VmaAllocator handle");

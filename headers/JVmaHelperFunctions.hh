@@ -9,18 +9,18 @@
 
 namespace jvma
 {
-    jobject createVkResult(JNIEnv *env, jint value);
+//    jobject createVkResult(JNIEnv *env, jint value);
 
-    int32_t getEnumSetValue(
-            JNIEnv *env,
-            const jobject enumSetObject,
-            const char *enumClassName);
+//    int32_t getEnumSetValue(
+//            JNIEnv *env,
+//            const jobject enumSetObject,
+//            const char *enumClassName);
 
-    void *getHandleValue(JNIEnv *env, jobject jHandle);
+//    void *getHandleValue(JNIEnv *env, jobject jHandle);
 
-    void setHandleValue(JNIEnv *env, jobject jHandle, void *value);
+//    void setHandleValue(JNIEnv *env, jobject jHandle, void *value);
 
-    void freeMemory(std::vector<void *> *memoryToFree);
+//    void freeMemory(std::vector<void *> *memoryToFree);
 
     void getVmaAllocatorCreateInfo(
             JNIEnv *env,
