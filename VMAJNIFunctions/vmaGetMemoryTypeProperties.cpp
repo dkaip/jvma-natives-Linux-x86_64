@@ -41,8 +41,6 @@ JNIEXPORT void JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaGetMemoryTypePr
         return;
     }
 
-    LOGERROR(env, "%s %d", "Flags", flags);
-
     char const *enumClassString = "com/CIMthetics/jvulkan/VulkanCore/VK11/Enums/VkMemoryPropertyFlagBits";
     char const *enumObjectString = "Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Enums/VkMemoryPropertyFlagBits;";
 

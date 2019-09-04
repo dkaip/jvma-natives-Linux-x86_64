@@ -58,10 +58,10 @@ JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaBindImageMem
 /*
  * Class:     com_CIMthetics_jvma_NativeProxies
  * Method:    vmaBuildStatsString
- * Signature: (Lcom/CIMthetics/jvma/Handles/VmaAllocator;Ljava/lang/String;Z)V
+ * Signature: (Lcom/CIMthetics/jvma/Handles/VmaAllocator;Lcom/CIMthetics/jvma/Structures/StringReturnValue;Z)V
  */
 JNIEXPORT void JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaBuildStatsString
-  (JNIEnv *, jobject, jobject, jstring, jboolean);
+  (JNIEnv *, jobject, jobject, jobject, jboolean);
 
 /*
  * Class:     com_CIMthetics_jvma_NativeProxies
@@ -186,7 +186,7 @@ JNIEXPORT void JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaDestroyPool
 /*
  * Class:     com_CIMthetics_jvma_NativeProxies
  * Method:    vmaFindMemoryTypeIndex
- * Signature: (Lcom/CIMthetics/jvma/Handles/VmaAllocator;Ljava/util/EnumSet;Lcom/CIMthetics/jvma/Structures/CreateInfos/VmaAllocationCreateInfo;Ljava/lang/Integer;)Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Enums/VkResult;
+ * Signature: (Lcom/CIMthetics/jvma/Handles/VmaAllocator;Ljava/util/EnumSet;Lcom/CIMthetics/jvma/Structures/CreateInfos/VmaAllocationCreateInfo;Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Structures/IntReturnValue;)Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Enums/VkResult;
  */
 JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaFindMemoryTypeIndex
   (JNIEnv *, jobject, jobject, jobject, jobject, jobject);

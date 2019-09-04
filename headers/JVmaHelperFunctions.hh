@@ -33,5 +33,23 @@ namespace jvma
             jobject jVmaRecordSettingsObject,
             VmaRecordSettings *vmaRecordSettings,
             std::vector<void *> *memoryToFree);
+
+    void populateVmaStats(
+            JNIEnv *env,
+            jobject jVmaStatsObject,
+            const VmaStats *vmaStats,
+            std::vector<void *> *memoryToFree);
+
+    void populateVmaStatInfo(
+            JNIEnv *env,
+            jobject jVmaStatInfoObject,
+            const VmaStatInfo *vmaStatInfo,
+            std::vector<void *> *memoryToFree);
+
+    void getVmaAllocationCreateInfo(
+            JNIEnv *env,
+            jobject jVmaAllocationCreateInfoObject,
+            VmaAllocationCreateInfo *vmaAllocationCreateInfo,
+            std::vector<void *> *memoryToFree);
 }
 #endif /* HELPERFUNCTIONS_HH_ */
