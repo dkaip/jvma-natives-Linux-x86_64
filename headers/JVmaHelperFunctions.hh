@@ -51,5 +51,30 @@ namespace jvma
             jobject jVmaAllocationCreateInfoObject,
             VmaAllocationCreateInfo *vmaAllocationCreateInfo,
             std::vector<void *> *memoryToFree);
+
+    void getVmaAllocationCreateInfoCollection(
+            JNIEnv *env,
+            const jobject jVmaAllocationCreateInfoCollectionObject,
+            VmaAllocationCreateInfo **vmaAllocationCreateInfos,
+            int *numberOfVmaAllocationCreateInfos,
+            std::vector<void *> *memoryToFree);
+
+    void getVmaPoolCreateInfo(
+            JNIEnv *env,
+            jobject jVmaPoolCreateInfoObject,
+            VmaPoolCreateInfo *vmaPoolCreateInfo,
+            std::vector<void *> *memoryToFree);
+
+    void populateVmaPoolStats(
+            JNIEnv *env,
+            jobject jVmaPoolStatsObject,
+            const VmaPoolStats *vmaPoolStats,
+            std::vector<void *> *memoryToFree);
+
+    void populateVmaAllocationInfo(
+            JNIEnv *env,
+            jobject jVmaAllocationInfoObject,
+            const VmaAllocationInfo *vmaAllocationInfo,
+            std::vector<void *> *memoryToFree);
 }
 #endif /* HELPERFUNCTIONS_HH_ */

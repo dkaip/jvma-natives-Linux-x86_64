@@ -10,8 +10,6 @@
 #include "com_CIMthetics_jvma_NativeProxies.h"
 #include "slf4j.hh"
 
-extern const char *voidMethodErrorText;
-
 namespace jvma
 {
     void populateVmaStats(

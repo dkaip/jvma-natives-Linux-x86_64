@@ -1,7 +1,7 @@
 /*
- * vmaFindMemoryTypeIndex.cpp
+ * vmaFindMemoryTypeIndexForImageInfo.cpp
  *
- *  Created on: Sep 3, 2019
+ *  Created on: Sep 4, 2019
  *      Author: Douglas Kaip
  */
 
@@ -12,11 +12,11 @@
 
 /*
  * Class:     com_CIMthetics_jvma_NativeProxies
- * Method:    vmaFindMemoryTypeIndex
- * Signature: (Lcom/CIMthetics/jvma/Handles/VmaAllocator;ILcom/CIMthetics/jvma/Structures/CreateInfos/VmaAllocationCreateInfo;Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Structures/IntReturnValue;)Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Enums/VkResult;
+ * Method:    vmaFindMemoryTypeIndexForImageInfo
+ * Signature: (Lcom/CIMthetics/jvma/Handles/VmaAllocator;Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Structures/CreateInfos/VkImageCreateInfo;Lcom/CIMthetics/jvma/Structures/CreateInfos/VmaAllocationCreateInfo;Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Structures/IntReturnValue;)Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Enums/VkResult;
  */
-JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaFindMemoryTypeIndex
-  (JNIEnv *env, jobject, jobject jVmaAllocator, jint jMemoryTypeBits, jobject jVmaAllocationCreateInfoObject, jobject jMemoryTypeIndex)
+JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaFindMemoryTypeIndexForImageInfo
+  (JNIEnv *env, jobject, jobject jVmaAllocator, jobject jVkImageCreateInfoObject, jobject jVmaAllocationCreateInfoObject, jobject jMemoryTypeIndex)
 {
     struct VmaAllocator_T *vmaAllocator = (struct VmaAllocator_T *)jvulkan::getHandleValue(env, jVmaAllocator);
     if (env->ExceptionOccurred())
@@ -26,6 +26,18 @@ JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaFindMemoryTy
     }
 
     std::vector<void *> memoryToFree(5);
+    VkImageCreateInfo vkImageCreateInfo = {};
+    jvulkan::getVkImageCreateInfo(
+            env,
+            jVkImageCreateInfoObject,
+            &vkImageCreateInfo,
+            &memoryToFree);
+    if (env->ExceptionOccurred())
+    {
+        LOGERROR(env, "%s", "Error calling getVkImageCreateInfo");
+        return jvulkan::createVkResult(env, VK_RESULT_MAX_ENUM);
+    }
+
     VmaAllocationCreateInfo vmaAllocationCreateInfo = {};
     jvma::getVmaAllocationCreateInfo(
             env,
@@ -38,18 +50,8 @@ JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaFindMemoryTy
         return jvulkan::createVkResult(env, VK_RESULT_MAX_ENUM);
     }
 
-    uint32_t memoryTypeBits = 0;
-    if (jMemoryTypeBits == 0)
-    {
-        memoryTypeBits = UINT32_MAX;
-    }
-    else
-    {
-        memoryTypeBits = jMemoryTypeBits;
-    }
-
     uint32_t memoryTypeIndex = -1;
-    VkResult result = vmaFindMemoryTypeIndex(vmaAllocator, memoryTypeBits, &vmaAllocationCreateInfo, &memoryTypeIndex);
+    VkResult result = vmaFindMemoryTypeIndexForImageInfo(vmaAllocator, &vkImageCreateInfo, &vmaAllocationCreateInfo, &memoryTypeIndex);
 
     jclass theClass = env->GetObjectClass(jMemoryTypeIndex);
     if (env->ExceptionOccurred())

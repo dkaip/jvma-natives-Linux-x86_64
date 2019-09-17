@@ -15662,6 +15662,11 @@ VkResult vmaFindMemoryTypeIndex(
 
     if(pAllocationCreateInfo->memoryTypeBits != 0)
     {
+        /*
+         * If any memory type bits are set in the
+         * AllocationCreateInfo structure add them to those
+         * that were passed in as a function parameter.
+         */
         memoryTypeBits &= pAllocationCreateInfo->memoryTypeBits;
     }
     
@@ -15669,8 +15674,13 @@ VkResult vmaFindMemoryTypeIndex(
     uint32_t preferredFlags = pAllocationCreateInfo->preferredFlags;
 
     const bool mapped = (pAllocationCreateInfo->flags & VMA_ALLOCATION_CREATE_MAPPED_BIT) != 0;
-    if(mapped)
+    if (mapped)
     {
+        /*
+         * If the allocation was requested to be mapped add
+         * VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT to the preferred flags.  Refer
+         * to the documentation for VMA_ALLOCATION_CREATE_MAPPED_BIT.
+         */
         preferredFlags |= VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT;
     }
 
