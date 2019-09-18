@@ -34,10 +34,10 @@ Alter the second arguments of the <code>set</code> statements that are
 before the <code>project</code> statement and replace the values that are 
 currently there with values that are appropriate for your system / development 
 environment.
-<p>
+
 Just as a side note, I was not able to debug the native code with a debugger while 
 developing it.  Possibly since this code's job is to interface between code written
-in Java and the code provided by the libraries provided in the zzzz 
+in Java and the code provided in the 
 [Vulkan Memory Allocator Project](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator). 
 I had to debug the old fashioned way with print statements (<code>cout</code>), although now slf4j logging
  is available via the MACROs in the header file 
