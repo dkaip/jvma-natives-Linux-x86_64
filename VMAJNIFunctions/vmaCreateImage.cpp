@@ -1,7 +1,7 @@
 /*
- * vmaAllocateMemoryForBuffer.cpp
+ * vmaCreateImage.cpp
  *
- *  Created on: Sep 17, 2019
+ *  Created on: Sep 18, 2019
  *      Author: Douglas Kaip
  */
 
@@ -12,11 +12,11 @@
 
 /*
  * Class:     com_CIMthetics_jvma_NativeProxies
- * Method:    vmaAllocateMemoryForBuffer
- * Signature: (Lcom/CIMthetics/jvma/Handles/VmaAllocator;Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Handles/VkBuffer;Lcom/CIMthetics/jvma/Structures/CreateInfos/VmaAllocationCreateInfo;Lcom/CIMthetics/jvma/Handles/VmaAllocation;Lcom/CIMthetics/jvma/Structures/VmaAllocationInfo;)Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Enums/VkResult;
+ * Method:    vmaCreateImage
+ * Signature: (Lcom/CIMthetics/jvma/Handles/VmaAllocator;Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Structures/CreateInfos/VkImageCreateInfo;Lcom/CIMthetics/jvma/Structures/CreateInfos/VmaAllocationCreateInfo;Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Handles/VkImage;Lcom/CIMthetics/jvma/Handles/VmaAllocation;Lcom/CIMthetics/jvma/Structures/VmaAllocationInfo;)Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Enums/VkResult;
  */
-JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaAllocateMemoryForBuffer
-  (JNIEnv *env, jobject, jobject jVmaAllocator, jobject jVkBuffer, jobject jVmaAllocationCreateInfo, jobject jVmaAllocation, jobject jVmaAllocationInfo)
+JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaCreateImage
+  (JNIEnv *env, jobject, jobject jVmaAllocator, jobject jVkImageCreateInfo, jobject jVmaAllocationCreateInfo, jobject jVkImage, jobject jVmaAllocation, jobject jVmaAllocationInfo)
 {
     struct VmaAllocator_T *vmaAllocator = (struct VmaAllocator_T *)jvulkan::getHandleValue(env, jVmaAllocator);
     if (env->ExceptionOccurred())
@@ -25,14 +25,19 @@ JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaAllocateMemo
         return jvulkan::createVkResult(env, VK_RESULT_MAX_ENUM);
     }
 
-    VkBuffer_T *vkBuffer = (VkBuffer_T *)jvulkan::getHandleValue(env, jVkBuffer);
+    std::vector<void *> memoryToFree(5);
+    VkImageCreateInfo vkImageCreateInfo = {};
+    jvulkan::getVkImageCreateInfo(
+            env,
+            jVkImageCreateInfo,
+            &vkImageCreateInfo,
+            &memoryToFree);
     if (env->ExceptionOccurred())
     {
-        LOGERROR(env, "%s", "Could not retrieve VkBuffer handle");
+        LOGERROR(env, "%s", "Error calling getVkImageCreateInfo");
         return jvulkan::createVkResult(env, VK_RESULT_MAX_ENUM);
     }
 
-    std::vector<void *> memoryToFree(5);
     VmaAllocationCreateInfo vmaAllocationCreateInfo = {};
     jvma::getVmaAllocationCreateInfo(
             env,
@@ -45,25 +50,28 @@ JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaAllocateMemo
         return jvulkan::createVkResult(env, VK_RESULT_MAX_ENUM);
     }
 
+    VkImage vkImage = nullptr;
     VmaAllocation vmaAllocation = nullptr;
     VmaAllocationInfo vmaAllocationInfo = {};
     VkResult result = (VkResult)-1;
 
     if (jVmaAllocationInfo == nullptr)
     {
-        result = vmaAllocateMemoryForBuffer(
+        result = vmaCreateImage(
                 vmaAllocator,
-                vkBuffer,
+                &vkImageCreateInfo,
                 &vmaAllocationCreateInfo,
+                &vkImage,
                 &vmaAllocation,
                 nullptr);
     }
     else
     {
-        result = vmaAllocateMemoryForBuffer(
+        result = vmaCreateImage(
                 vmaAllocator,
-                vkBuffer,
+                &vkImageCreateInfo,
                 &vmaAllocationCreateInfo,
+                &vkImage,
                 &vmaAllocation,
                 &vmaAllocationInfo);
 
@@ -80,6 +88,8 @@ JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaAllocateMemo
     }
 
     jvulkan::freeMemory(&memoryToFree);
+
+    jvulkan::setHandleValue(env, jVkImage, vkImage);
 
     jvulkan::setHandleValue(env, jVmaAllocation, vmaAllocation);
 
