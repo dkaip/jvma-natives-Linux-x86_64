@@ -41,8 +41,7 @@ namespace jvma
             env->ExceptionClear();
         }
 
-        jclass theClass = env->GetObjectClass(
-                jVmaStatInfoObject);
+        jclass theClass = env->GetObjectClass(jVmaStatInfoObject);
         if (env->ExceptionOccurred())
         {
             LOGERROR(env, "%s", "Could not find class com/CIMthetics/jvma/Structures/VmaStatInfo");

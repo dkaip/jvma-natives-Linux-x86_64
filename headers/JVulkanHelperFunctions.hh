@@ -2275,6 +2275,13 @@ namespace jvulkan
             int *numberOfVkMemoryRequirements,
             std::vector<void *> *memoryToFree);
 
+    void getVulkanHandleCollection(
+            JNIEnv *env,
+            const jobject jVulkanHandlesCollectionObject,
+            void **vulkanHandles,
+            int *numberOfVulkanHandles,
+            std::vector<void *> *memoryToFree);
+
     JNIEnv *getJNIEnv();
 
 	void putOnLinkedBlockingQueue(JNIEnv *env, jobject JQueue, jobject entry);

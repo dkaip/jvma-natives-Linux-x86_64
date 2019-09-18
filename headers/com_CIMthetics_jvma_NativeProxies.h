@@ -129,14 +129,6 @@ JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaCreatePool
 
 /*
  * Class:     com_CIMthetics_jvma_NativeProxies
- * Method:    vmaDefragment
- * Signature: (Lcom/CIMthetics/jvma/Handles/VmaAllocator;[Lcom/CIMthetics/jvma/Handles/VmaAllocation;J[ZLcom/CIMthetics/jvma/Structures/VmaDefragmentationInfo;Lcom/CIMthetics/jvma/Structures/VmaDefragmentationStats;)Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Enums/VkResult;
- */
-JNIEXPORT jobject JNICALL Java_com_CIMthetics_jvma_NativeProxies_vmaDefragment
-  (JNIEnv *, jobject, jobject, jobjectArray, jlong, jbooleanArray, jobject, jobject);
-
-/*
- * Class:     com_CIMthetics_jvma_NativeProxies
  * Method:    vmaDefragmentationBegin
  * Signature: (Lcom/CIMthetics/jvma/Handles/VmaAllocator;Lcom/CIMthetics/jvma/Structures/VmaDefragmentationInfo2;Lcom/CIMthetics/jvma/Structures/VmaDefragmentationStats;Lcom/CIMthetics/jvma/Handles/VmaDefragmentationContext;)Lcom/CIMthetics/jvulkan/VulkanCore/VK11/Enums/VkResult;
  */

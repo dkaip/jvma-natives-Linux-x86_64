@@ -76,5 +76,17 @@ namespace jvma
             jobject jVmaAllocationInfoObject,
             const VmaAllocationInfo *vmaAllocationInfo,
             std::vector<void *> *memoryToFree);
+
+    void getVmaDefragmentationInfo2(
+            JNIEnv *env,
+            jobject jVmaDefragmentationInfo2Object,
+            VmaDefragmentationInfo2 *vmaDefragmentationInfo2,
+            std::vector<void *> *memoryToFree);
+
+    void populateVmaDefragmentationStats(
+            JNIEnv *env,
+            jobject jVmaDefragmentationStatsObject,
+            const VmaDefragmentationStats *vmaDefragmentationStats,
+            std::vector<void *> *memoryToFree);
 }
 #endif /* HELPERFUNCTIONS_HH_ */
