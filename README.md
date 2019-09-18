@@ -8,7 +8,7 @@ and the [Vulkan Memory Allocator Project](https://github.com/GPUOpen-LibrariesAn
 There are currently no prerequisites for this project.
 It contains the <code>vk&lowbar;mem&lowbar;alloc.h</code> 
 file that is the code as well as the header required for the 
-[Vulkan Memory Allocator](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator).  
+[Vulkan Memory Allocator](https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator). 
 The file that is currently included corresponds to release <code>2.2.0</code> dated 
 13-dec-2018.
 
