@@ -77,7 +77,7 @@ JNI header file for the native functions is:
 
 <code>javah -classpath &quot;my-jma-project-path/src/main/java:my-jvulkan-project-path/src/main/java&quot; com.CIMthetics.jvma.NativeProxies</code>
 
-This will create the file <code>com&lowbar;CIMthetics&lowbar;jvma&lowbar;NativeProxies.h</code>  
+This will create the file <code>com&lowbar;CIMthetics&lowbar;jvma&lowbar;NativeProxies.h</code> 
 that will need to be placed in the <code>headers</code> directory of 
 the **jvma-natives-Linux-x86_64** project on your machine.  You will then need to implement 
 any new functions you have added here in that project as well. 
