@@ -13,7 +13,7 @@ set(VulkanSDKHeaders "/home/dkaip/Downloads/VulkanSDK/1.1.126.0/x86_64/include")
 # Now get on with business and get the library built
 project(jvma-natives-Linux-x86_64)
 
-find_library(VULKAN_NATIVE_LIBRARIES
+find_library(VULKAN_SDK_NATIVE_LIBRARIES
 	NAMES 	vulkan
 		VkLayer_starter_layer
 		VkLayer_vktrace_layer
@@ -48,7 +48,7 @@ target_include_directories(jvma-natives-Linux-x86_64 PRIVATE ${JNIHeaders2})
 target_include_directories(jvma-natives-Linux-x86_64 PRIVATE ${VulkanSDKHeaders})
 
 # Add libraries
-target_link_libraries(jvma-natives-Linux-x86_64 PRIVATE ${VULKAN_NATIVE_LIBRARIES})
+target_link_libraries(jvma-natives-Linux-x86_64 PRIVATE ${VULKAN_SDK_NATIVE_LIBRARIES})
 target_link_libraries(jvma-natives-Linux-x86_64 PRIVATE ${JVULKAN_NATIVE_LIBRARY})
 
 
