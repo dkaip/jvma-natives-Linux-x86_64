@@ -72,6 +72,8 @@ namespace jvulkan
 
     void setHandleValue(JNIEnv *env, jobject jHandle, void *value);
 
+    void setBooleanReturnValue(JNIEnv *env, jobject jReturnValue, jboolean value);
+
     void setIntReturnValue(JNIEnv *env, jobject jReturnValue, jint value);
 
     void setLongReturnValue(JNIEnv *env, jobject jReturnValue, jlong value);
